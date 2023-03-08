@@ -7,8 +7,18 @@ public class ContaBanco {
     private boolean status;
 
     // Métodos Personalizados
-    public void abrirConta() {
+    public void abrirConta(String t) {
+        this.setTipo(t);
+        this.setStatus(true);
+        if (t == "CC") {
+            this.saldo = 50;
+        } else if (t == "CP") {
+            this.saldo = 150;
+        }
 
+    }
+
+    private void setStatus(boolean b) {
     }
 
     public void fecharConta() {
