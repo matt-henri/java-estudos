@@ -11,22 +11,28 @@ public class ContaBanco {
         this.setTipo(t);
         this.setStatus(true);
         if (t == "CC") {
-            this.saldo = 50;
+            this.setSaldo(50);
         } else if (t == "CP") {
-            this.saldo = 150;
+            this.setSaldo(150);
         }
-
-    }
-
-    private void setStatus(boolean b) {
+        System.out.print("Conta aberta com sucesso!");
     }
 
     public void fecharConta() {
-
+        if (this.getSaldo() > 0) {
+            System.out.print("Conta não pode ser fechada porque ainda tem dinheiro.");
+        } else if (this.getSaldo() < 0 ) {
+            System.out.print("Conta não pode ser fechada pois tem débito.");
+        } else {
+            this.setStatus(false);
+        }
     }
 
-    public void depositar() {
+    public void depositar(float v) {
+        if (this.getStatus()) {
+            this.setSaldo(this.getSaldo() + v);
 
+        }
     }
 
     public void savar() {
@@ -39,8 +45,8 @@ public class ContaBanco {
 
     // Métodos Especiais
     public ContaBanco() {
-        this.saldo = 0;
-        this.status = false;
+        this.setSaldo(0);
+        this.setStatus(false);
     }
 
     public void setNumConta(int n) {
@@ -59,4 +65,29 @@ public class ContaBanco {
         this.tipo = tipo;
     }
 
+    public String getDono() {
+        return dono;
+    }
+
+    public void setDono(String Dono) {
+        this.dono = dono;
+    }
+
+    public float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(float saldo) {
+        this.saldo = saldo;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status; 
+    }
+
 }
+ 
