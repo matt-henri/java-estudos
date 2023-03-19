@@ -21,21 +21,31 @@ public class ContaBanco {
     public void fecharConta() {
         if (this.getSaldo() > 0) {
             System.out.print("Conta não pode ser fechada porque ainda tem dinheiro.");
-        } else if (this.getSaldo() < 0 ) {
+        } else if (this.getSaldo() < 0) {
             System.out.print("Conta não pode ser fechada pois tem débito.");
         } else {
             this.setStatus(false);
+            System.out.print("Conta fechada com sucesso!");
         }
     }
 
     public void depositar(float v) {
         if (this.getStatus()) {
             this.setSaldo(this.getSaldo() + v);
-
+            System.out.print("Depósito realizado na conta de " + this.getDono());
+        } else {
+            System.out.print("Impossive depositar em uma conta fechada!");
         }
     }
 
-    public void savar() {
+    public void savar( float v ) {
+        if (this.getStatus()) {
+            if (this.getSaldo() >= v) {
+                this.getSaldo(this.getSaldo() - v);
+                System.out.print("Saque realizado na conta de " + this.getDono());
+            } else {
+                System.out.print("Saldo insuficiente para saque ");
+            }
 
     }
 
@@ -86,8 +96,7 @@ public class ContaBanco {
     }
 
     public void setStatus(boolean status) {
-        this.status = status; 
+        this.status = status;
     }
 
 }
- 
